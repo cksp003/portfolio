@@ -1,344 +1,395 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Ch. Krupa Satya Paul | Software Engineer</title>
-    <style>
-        :root {
-            --bg-color: #0B0E14;
-            --text-main: #F8FAFC;
-            --text-muted: #94A3B8;
-            --accent-cyan: #00F0FF;
-            --accent-violet: #8A2BE2;
-            --glass-bg: rgba(255, 255, 255, 0.03);
-            --glass-border: rgba(255, 255, 255, 0.08);
-            --glass-hover: rgba(255, 255, 255, 0.08);
-        }
-
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: 'Inter', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            scroll-behavior: smooth;
-        }
-
-        body {
-            background-color: var(--bg-color);
-            color: var(--text-main);
-            line-height: 1.6;
-            overflow-x: hidden;
-            position: relative;
-        }
-
-        /* Neon Orbs Background */
-        .orb {
-            position: fixed;
-            border-radius: 50%;
-            filter: blur(120px);
-            z-index: -1;
-            opacity: 0.5;
-            animation: float 10s infinite alternate ease-in-out;
-        }
-        .orb-1 {
-            width: 400px; height: 400px;
-            background: var(--accent-violet);
-            top: -100px; left: -100px;
-        }
-        .orb-2 {
-            width: 350px; height: 350px;
-            background: var(--accent-cyan);
-            bottom: -50px; right: -50px;
-        }
-
-        @keyframes float {
-            0% { transform: translateY(0px) scale(1); }
-            100% { transform: translateY(30px) scale(1.05); }
-        }
-
-        /* Navigation */
-        nav {
-            position: fixed;
-            top: 0; width: 100%;
-            background: rgba(11, 14, 20, 0.8);
-            backdrop-filter: blur(10px);
-            -webkit-backdrop-filter: blur(10px);
-            z-index: 100;
-            border-bottom: 1px solid var(--glass-border);
-            padding: 15px 0;
-        }
-        .nav-content {
-            max-width: 1100px; margin: 0 auto; padding: 0 20px;
-            display: flex; justify-content: space-between; align-items: center;
-        }
-        .nav-logo { font-weight: 700; font-size: 1.2rem; color: var(--text-main); text-decoration: none; }
-        .nav-links a {
-            color: var(--text-muted); text-decoration: none;
-            margin-left: 25px; font-size: 0.9rem; transition: color 0.3s;
-        }
-        .nav-links a:hover { color: var(--accent-cyan); }
-
-        /* Layout */
-        .container { max-width: 1100px; margin: 0 auto; padding: 0 20px; }
-        section { padding: 80px 0 40px; }
-
-        /* Glassmorphism Cards */
-        .glass-card {
-            background: var(--glass-bg);
-            backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px);
-            border: 1px solid var(--glass-border);
-            border-radius: 16px; padding: 30px; margin-bottom: 30px;
-            transition: all 0.3s ease;
-        }
-        .glass-card:hover {
-            transform: translateY(-5px);
-            background: var(--glass-hover);
-            border-color: rgba(0, 240, 255, 0.3);
-            box-shadow: 0 10px 30px -10px rgba(0, 240, 255, 0.1);
-        }
-
-        /* Hero Section */
-        header { padding: 180px 0 80px; text-align: left; }
-        header h1 {
-            font-size: 3.5rem; margin-bottom: 10px; line-height: 1.1;
-            background: linear-gradient(90deg, var(--text-main), var(--text-muted));
-            -webkit-background-clip: text; -webkit-text-fill-color: transparent;
-        }
-        .highlight-text {
-            background: linear-gradient(90deg, var(--accent-cyan), var(--accent-violet));
-            -webkit-background-clip: text; -webkit-text-fill-color: transparent;
-        }
-        header h2 { font-size: 1.5rem; font-weight: 400; color: var(--text-muted); margin-bottom: 25px; }
-        .hero-text { max-width: 650px; color: var(--text-muted); margin-bottom: 35px; font-size: 1.1rem; }
-
-        /* Buttons */
-        .btn-group { display: flex; gap: 15px; }
-        .btn {
-            padding: 12px 24px; border-radius: 8px; text-decoration: none;
-            font-weight: 600; font-size: 0.95rem; transition: all 0.3s;
-        }
-        .btn-primary {
-            background: linear-gradient(90deg, var(--accent-cyan), #0077ff);
-            color: #000; border: none;
-        }
-        .btn-primary:hover { opacity: 0.9; transform: scale(1.02); }
-        .btn-outline {
-            background: transparent; color: var(--text-main);
-            border: 1px solid var(--glass-border);
-        }
-        .btn-outline:hover { border-color: var(--accent-violet); background: rgba(138, 43, 226, 0.1); }
-
-        /* Typography & Structure */
-        h3 {
-            font-size: 2rem; margin-bottom: 30px;
-            display: flex; align-items: center; gap: 15px;
-        }
-        h3::after {
-            content: ""; flex: 1; height: 1px;
-            background: linear-gradient(90deg, var(--glass-border), transparent);
-        }
-        
-        .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 25px; }
-        .grid-3 { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 25px; }
-
-        /* Tags */
-        .tag {
-            display: inline-block; background: rgba(0, 240, 255, 0.05);
-            color: var(--accent-cyan); padding: 6px 14px; border-radius: 20px;
-            font-size: 0.85rem; margin: 0 8px 10px 0; border: 1px solid rgba(0, 240, 255, 0.15);
-        }
-
-        /* Project Cards */
-        .project-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 15px; }
-        .project-title { font-size: 1.4rem; color: var(--text-main); }
-        .project-links a { color: var(--text-muted); margin-left: 10px; text-decoration: none; transition: color 0.2s;}
-        .project-links a:hover { color: var(--accent-cyan); }
-        .project-desc { color: var(--text-muted); font-size: 0.95rem; margin-bottom: 20px; min-height: 70px; }
-        .project-bullets { font-size: 0.85rem; color: #cbd5e1; list-style-type: none; }
-        .project-bullets li { margin-bottom: 8px; padding-left: 20px; position: relative; }
-        .project-bullets li::before { content: "▹"; position: absolute; left: 0; color: var(--accent-violet); }
-
-        /* Footer */
-        footer { border-top: 1px solid var(--glass-border); padding: 40px 0; text-align: center; color: var(--text-muted); font-size: 0.9rem; margin-top: 50px;}
-
-        @media (max-width: 768px) {
-            .grid-2, .grid-3 { grid-template-columns: 1fr; }
-            header h1 { font-size: 2.8rem; }
-            .nav-links { display: none; } /* Simplified for mobile */
-        }
-    </style>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Portfolio of Challa Krupa Satya Paul — Information Technology student, software developer and SQL enthusiast." />
+  <meta name="theme-color" content="#080d18" />
+  <meta property="og:title" content="Challa Krupa Satya Paul | Developer Portfolio" />
+  <meta property="og:description" content="Explore my projects, technical skills, experience and achievements." />
+  <title>Challa Krupa Satya Paul | Developer Portfolio</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg:#080d18; --surface:#101827; --surface-2:#151f31; --text:#edf3ff;
+      --muted:#9aa9bf; --line:rgba(173,195,230,.14); --accent:#70a5ff;
+      --accent-2:#9b8cff; --green:#69dfb1; --shadow:0 24px 70px rgba(0,0,0,.32);
+      --radius:22px; --max:1160px;
+    }
+    body.light {
+      --bg:#f4f7fc; --surface:#fff; --surface-2:#edf2fa; --text:#172238;
+      --muted:#5f6e83; --line:rgba(34,56,91,.14); --accent:#2868d8;
+      --accent-2:#7658d8; --green:#168b65; --shadow:0 24px 70px rgba(31,54,91,.10);
+    }
+    *{box-sizing:border-box} html{scroll-behavior:smooth;scroll-padding-top:90px}
+    body{margin:0;background:var(--bg);color:var(--text);font-family:Manrope, sans-serif;line-height:1.65;transition:background .25s,color .25s}
+    a{color:inherit;text-decoration:none} button{font:inherit}
+    .progress{position:fixed;z-index:1000;top:0;left:0;height:3px;width:0;background:linear-gradient(90deg,var(--accent),var(--accent-2))}
+    .nav-wrap{position:sticky;top:0;z-index:100;background:color-mix(in srgb,var(--bg) 82%,transparent);backdrop-filter:blur(18px);border-bottom:1px solid var(--line)}
+    nav{max-width:var(--max);height:76px;margin:auto;padding:0 24px;display:flex;align-items:center;justify-content:space-between;gap:24px}
+    .brand{font-weight:800;letter-spacing:-.06em;font-size:1.2rem}.brand span{color:var(--accent)}
+    .nav-links{display:flex;align-items:center;gap:25px;color:var(--muted);font-size:.88rem;font-weight:700}
+    .nav-links a:hover,.nav-links a.active{color:var(--text)}
+    .nav-actions{display:flex;gap:10px;align-items:center}
+    .icon-btn,.menu-btn{border:1px solid var(--line);background:var(--surface);color:var(--text);border-radius:12px;padding:10px 12px;cursor:pointer}
+    .menu-btn{display:none}
+    .container{max-width:var(--max);margin:auto;padding:0 24px}
+    .hero{min-height:690px;display:grid;grid-template-columns:1.2fr .8fr;align-items:center;gap:60px;padding-top:76px;padding-bottom:85px;position:relative}
+    .eyebrow{font:500 .76rem 'DM Mono',monospace;color:var(--green);letter-spacing:.12em;text-transform:uppercase;display:flex;align-items:center;gap:10px}
+    .eyebrow:before{content:"";width:25px;height:1px;background:var(--green)}
+    h1{font-size:clamp(2.8rem,6vw,5.3rem);line-height:1.04;letter-spacing:-.075em;margin:22px 0}
+    .gradient{background:linear-gradient(100deg,var(--accent),var(--accent-2));-webkit-background-clip:text;background-clip:text;color:transparent}
+    .role-line{font-size:clamp(1.05rem,2vw,1.35rem);font-weight:700;color:var(--muted);margin-bottom:18px}
+    .hero-copy{max-width:640px;color:var(--muted);font-size:1.02rem}
+    .actions{display:flex;flex-wrap:wrap;gap:12px;margin:30px 0}
+    .btn{display:inline-flex;align-items:center;justify-content:center;gap:9px;border:1px solid var(--line);border-radius:13px;padding:13px 18px;font-weight:800;font-size:.9rem;transition:.2s;cursor:pointer}
+    .btn:hover{transform:translateY(-3px);border-color:var(--accent)}
+    .btn.primary{background:linear-gradient(110deg,var(--accent),var(--accent-2));color:#07101f;border:0}
+    .btn.secondary{background:var(--surface)}
+    .socials{display:flex;gap:18px;color:var(--muted);font-size:.88rem;font-weight:700}
+    .socials a:hover{color:var(--accent)}
+    .hero-visual{display:flex;justify-content:center;position:relative}
+    .portrait-shell{width:min(360px,80vw);aspect-ratio: .82;border-radius:34px;padding:10px;background:linear-gradient(145deg,var(--accent),var(--accent-2),transparent 70%);box-shadow:var(--shadow);transform:rotate(2deg)}
+    .portrait-inner{width:100%;height:100%;border-radius:27px;overflow:hidden;background:var(--surface-2);position:relative;transform:rotate(-2deg)}
+    .portrait-inner img{width:100%;height:100%;object-fit:cover;object-position:center top;display:block}
+    .portrait-fallback{position:absolute;inset:0;display:grid;place-items:center;text-align:center;padding:25px;color:var(--muted);font-size:.9rem}
+    .portrait-fallback strong{display:block;font-size:4rem;color:var(--accent)}
+    .floating-card{position:absolute;right:-24px;bottom:35px;background:var(--surface);border:1px solid var(--line);padding:14px 18px;border-radius:16px;box-shadow:var(--shadow);font-size:.82rem}
+    .floating-card b{display:block;font-size:1rem}
+    .availability{display:inline-flex;align-items:center;gap:8px;color:var(--green);font:500 .75rem 'DM Mono',monospace}
+    .dot{width:8px;height:8px;border-radius:50%;background:var(--green);box-shadow:0 0 0 5px color-mix(in srgb,var(--green) 15%,transparent)}
+    section{padding:88px 0;border-top:1px solid var(--line)}
+    .section-head{display:flex;justify-content:space-between;align-items:end;gap:25px;margin-bottom:34px}
+    .section-kicker{font:500 .74rem 'DM Mono',monospace;color:var(--green);letter-spacing:.13em;text-transform:uppercase}
+    h2{font-size:clamp(2rem,4vw,3rem);line-height:1.12;letter-spacing:-.06em;margin:9px 0 0}
+    .section-intro{max-width:480px;color:var(--muted);margin:0}
+    .about-grid{display:grid;grid-template-columns:1.2fr .8fr;gap:22px}
+    .panel,.skill-card,.project-card,.timeline-card,.terminal{background:var(--surface);border:1px solid var(--line);border-radius:var(--radius)}
+    .panel{padding:28px}.panel p{color:var(--muted);margin-top:0}
+    .facts{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+    .fact{background:var(--surface-2);border:1px solid var(--line);border-radius:16px;padding:17px}
+    .fact small{display:block;color:var(--muted);font-size:.72rem;margin-bottom:5px}
+    .fact strong{font-size:.92rem}
+    .skills-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:15px}
+    .skill-card{padding:22px}
+    .skill-card h3{margin:0 0 15px;font-size:1rem}
+    .tags{display:flex;flex-wrap:wrap;gap:8px}
+    .tag{font:500 .75rem 'DM Mono',monospace;color:var(--muted);background:var(--surface-2);border:1px solid var(--line);padding:7px 10px;border-radius:9px}
+    .project-toolbar{display:flex;justify-content:space-between;gap:15px;align-items:center;margin-bottom:20px;flex-wrap:wrap}
+    .filters{display:flex;gap:8px;flex-wrap:wrap}
+    .filter{border:1px solid var(--line);background:var(--surface);color:var(--muted);padding:8px 13px;border-radius:100px;cursor:pointer;font-size:.78rem;font-weight:800}
+    .filter.active,.filter:hover{background:var(--surface-2);color:var(--text);border-color:var(--accent)}
+    .project-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:17px}
+    .project-card{overflow:hidden;display:flex;flex-direction:column;transition:.25s}
+    .project-card:hover{transform:translateY(-6px);border-color:var(--accent);box-shadow:var(--shadow)}
+    .project-art{height:155px;padding:20px;background:radial-gradient(circle at 80% 15%,rgba(112,165,255,.28),transparent 42%),linear-gradient(135deg,var(--surface-2),var(--surface));display:flex;align-items:end;justify-content:space-between}
+    .project-art .symbol{font-size:2.6rem;font-weight:800;color:var(--accent);letter-spacing:-.1em}
+    .project-art small{font:500 .7rem 'DM Mono',monospace;color:var(--muted)}
+    .project-content{padding:22px;display:flex;flex-direction:column;flex:1}
+    .project-content h3{margin:0 0 9px;font-size:1.16rem}
+    .project-content p{color:var(--muted);font-size:.88rem;margin:0 0 18px}
+    .project-content .tags{margin-top:auto}
+    .project-links{display:flex;gap:15px;margin-top:20px;font-size:.82rem;font-weight:800;color:var(--accent)}
+    .project-links a:hover{text-decoration:underline}
+    .timeline{display:grid;grid-template-columns:1fr 1fr;gap:17px}
+    .timeline-card{padding:24px}
+    .timeline-card .date{font:500 .73rem 'DM Mono',monospace;color:var(--green)}
+    .timeline-card h3{margin:10px 0 4px}
+    .timeline-card p{color:var(--muted);font-size:.88rem;margin:7px 0 0}
+    .terminal-wrap{display:grid;grid-template-columns:.9fr 1.1fr;gap:25px;align-items:center}
+    .terminal{overflow:hidden;box-shadow:var(--shadow)}
+    .terminal-top{padding:13px 17px;border-bottom:1px solid var(--line);display:flex;gap:7px;align-items:center;color:var(--muted);font:500 .72rem 'DM Mono',monospace}
+    .terminal-top i{width:8px;height:8px;border-radius:50%;background:#ff7777}.terminal-top i:nth-child(2){background:#f6c96a}.terminal-top i:nth-child(3){background:#62d6a1}
+    .terminal-body{padding:20px;font: .82rem/1.9 'DM Mono',monospace;min-height:245px}
+    .terminal-body .muted{color:var(--muted)}.terminal-body .cmd{color:var(--green)}
+    .terminal-input{display:flex;gap:9px;margin-top:12px}
+    .terminal-input input{flex:1;min-width:0;background:var(--surface-2);border:1px solid var(--line);border-radius:9px;padding:10px;color:var(--text);font:inherit;outline:none}
+    .terminal-input button{background:var(--accent);color:#07101f;border:0;border-radius:9px;padding:0 14px;font-weight:800;cursor:pointer}
+    .terminal-help{color:var(--muted);font-size:.83rem}
+    .achievement-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:15px}
+    .achievement{padding:22px;background:var(--surface);border:1px solid var(--line);border-radius:18px}
+    .achievement .emoji{font-size:1.5rem}.achievement h3{font-size:1rem;margin:12px 0 5px}.achievement p{font-size:.83rem;color:var(--muted);margin:0}
+    .contact-grid{display:grid;grid-template-columns:.85fr 1.15fr;gap:22px}
+    .contact-links{display:grid;gap:12px;margin-top:20px}
+    .contact-link{padding:14px;background:var(--surface-2);border:1px solid var(--line);border-radius:13px;font-size:.88rem}
+    .contact-link span{display:block;color:var(--muted);font-size:.72rem}
+    form{display:grid;gap:13px}
+    label{font-size:.8rem;font-weight:800}
+    input,textarea{width:100%;background:var(--surface-2);border:1px solid var(--line);border-radius:12px;padding:13px;color:var(--text);font:inherit;outline:none;margin-top:6px}
+    input:focus,textarea:focus{border-color:var(--accent)}textarea{min-height:125px;resize:vertical}
+    footer{padding:28px 24px;border-top:1px solid var(--line);color:var(--muted);font-size:.8rem}
+    .footer-inner{max-width:var(--max);margin:auto;display:flex;justify-content:space-between;gap:15px;flex-wrap:wrap}
+    .reveal{opacity:0;transform:translateY(22px);transition:opacity .65s,transform .65s}.reveal.visible{opacity:1;transform:none}
+    .hidden{display:none!important}
+    .modal{position:fixed;inset:0;z-index:500;background:rgba(0,0,0,.72);display:grid;place-items:center;padding:20px}
+    .modal-box{max-width:600px;width:100%;background:var(--surface);border:1px solid var(--line);border-radius:22px;padding:28px;position:relative;box-shadow:var(--shadow)}
+    .modal-close{position:absolute;right:16px;top:14px;border:1px solid var(--line);background:var(--surface-2);color:var(--text);border-radius:9px;padding:7px 11px;cursor:pointer}
+    @media(max-width:900px){.hero{grid-template-columns:1fr .7fr;gap:25px}.project-grid{grid-template-columns:repeat(2,1fr)}.skills-grid{grid-template-columns:repeat(2,1fr)}.nav-links{gap:13px}}
+    @media(max-width:700px){
+      nav{height:66px}.menu-btn{display:block}.nav-links{display:none;position:absolute;top:66px;left:0;right:0;background:var(--surface);padding:18px 24px 22px;border-bottom:1px solid var(--line);flex-direction:column;align-items:flex-start}
+      .nav-links.open{display:flex}.hero{grid-template-columns:1fr;padding-top:58px;text-align:left;min-height:auto}.hero-visual{grid-row:1;justify-content:flex-start}.portrait-shell{width:220px}.floating-card{right:auto;left:170px;bottom:20px}
+      .about-grid,.terminal-wrap,.contact-grid{grid-template-columns:1fr}.section-head{display:block}.section-intro{margin-top:14px}.project-grid,.timeline{grid-template-columns:1fr}.skills-grid,.achievement-grid{grid-template-columns:1fr 1fr}section{padding:68px 0}
+    }
+    @media(max-width:430px){.container{padding:0 18px}nav{padding:0 18px}.skills-grid,.achievement-grid{grid-template-columns:1fr}.floating-card{left:145px}.actions .btn{width:100%}}
+    @media(prefers-reduced-motion:reduce){*,*::before,*::after{scroll-behavior:auto!important;transition:none!important;animation:none!important}.reveal{opacity:1;transform:none}}
+  </style>
 </head>
 <body>
-
-    <div class="orb orb-1"></div>
-    <div class="orb orb-2"></div>
-
-    <!-- NAVIGATION -->
+  <div class="progress" id="progress"></div>
+  <div class="nav-wrap">
     <nav>
-        <div class="nav-content">
-            <a href="#" class="nav-logo">Ch. Krupa Satya Paul</a>
-            <div class="nav-links">
-                <a href="#about">About</a>
-                <a href="#skills">Skills</a>
-                <a href="#projects">Projects</a>
-                <a href="#experience">Experience</a>
-                <a href="#contact">Contact</a>
-            </div>
-        </div>
+      <a class="brand" href="#home">paul<span>.</span></a>
+      <div class="nav-links" id="navLinks">
+        <a href="#about">About</a><a href="#skills">Skills</a><a href="#projects">Projects</a>
+        <a href="#experience">Experience</a><a href="#achievements">Achievements</a><a href="#contact">Contact</a>
+      </div>
+      <div class="nav-actions">
+        <button class="icon-btn" id="themeToggle" aria-label="Toggle theme" title="Toggle theme">☼</button>
+        <a class="btn primary" href="resume.pdf" download>↓ Resume</a>
+        <button class="menu-btn" id="menuBtn" aria-label="Open navigation">☰</button>
+      </div>
     </nav>
+  </div>
 
+  <main>
     <div class="container">
-        <!-- HERO SECTION -->
-        <header id="about">
-            <h2>Hi, I'm Krupa Satya Paul</h2>
-            <h1>Building robust <span class="highlight-text">web architectures</span> & AI solutions.</h1>
-            <p class="hero-text">
-                Full-Stack Developer and Engineering Student at GVPCE. I bridge algorithmic problem-solving with modern frameworks to build scalable, end-to-end applications—from AI-integrated platforms to real-time inventory systems.
-            </p>
-            <div class="btn-group">
-                <a href="https://www.linkedin.com/in/krupa-satya-paul-challa-2bb1812a6/" target="_blank" class="btn btn-primary">Connect on LinkedIn</a>
-                <a href="mailto:your.email@example.com" class="btn btn-outline">Contact Me</a>
+      <header class="hero" id="home">
+        <div class="hero-text">
+          <div class="availability"><span class="dot"></span> OPEN TO SOFTWARE DEVELOPMENT OPPORTUNITIES</div>
+          <div class="eyebrow" style="margin-top:24px">Hello, I'm</div>
+          <h1>Challa Krupa<br><span class="gradient">Satya Paul.</span></h1>
+          <div class="role-line">Information Technology Student · Aspiring Software Developer</div>
+          <p class="hero-copy">I build practical web applications and work with databases to solve real-world problems. I'm particularly interested in backend development, SQL and creating useful, reliable software experiences.</p>
+          <div class="actions">
+            <a class="btn primary" href="#projects">Explore my work ↗</a>
+            <a class="btn secondary" href="resume.pdf" download>Download resume ↓</a>
+          </div>
+          <div class="socials">
+            <a href="https://github.com/cksp003" target="_blank" rel="noopener">GitHub ↗</a>
+            <!-- Replace the LinkedIn URL below with your actual profile URL. -->
+            <a href="https://www.linkedin.com/" target="_blank" rel="noopener">LinkedIn ↗</a>
+            <a href="#contact">Contact ↗</a>
+          </div>
+        </div>
+        <div class="hero-visual">
+          <div class="portrait-shell"><div class="portrait-inner">
+            <img src="paulpic.jpg" alt="Portrait of Challa Krupa Satya Paul" onerror="this.style.display='none';document.getElementById('portraitFallback').style.display='grid'">
+            <div class="portrait-fallback" id="portraitFallback" style="display:none"><div><strong>CP</strong>Add <b>paulpic.jpg</b> beside index.html</div></div>
+          </div></div>
+          <div class="floating-card"><span class="availability"><span class="dot"></span> BUILDING & LEARNING</span><b>Turning ideas into projects</b></div>
+        </div>
+      </header>
+
+      <section id="about" class="reveal">
+        <div class="section-head"><div><div class="section-kicker">01 / About</div><h2>A little about me.</h2></div><p class="section-intro">A developer in progress, focused on fundamentals, practical projects and continuous improvement.</p></div>
+        <div class="about-grid">
+          <div class="panel">
+            <p>I'm a final-year B.Tech Information Technology student at Gayatri Vidya Parishad College of Engineering. I enjoy understanding how applications work end-to-end — from designing a user interface to building APIs and structuring relational databases.</p>
+            <p>My current focus is strengthening my software development skills, writing effective SQL queries and building projects that demonstrate practical problem-solving. I value clean implementation, learning by building and being able to explain the decisions behind my work.</p>
+            <div class="tags"><span class="tag">Problem solving</span><span class="tag">SQL</span><span class="tag">Web development</span><span class="tag">Networking</span></div>
+          </div>
+          <div class="facts">
+            <div class="fact"><small>EDUCATION</small><strong>B.Tech · Information Technology</strong></div>
+            <div class="fact"><small>COLLEGE</small><strong>GVP College of Engineering</strong></div>
+            <div class="fact"><small>FOCUS</small><strong>Software & Backend Development</strong></div>
+            <div class="fact"><small>INTEREST</small><strong>SQL · Databases · Web Apps</strong></div>
+          </div>
+        </div>
+      </section>
+
+      <section id="skills" class="reveal">
+        <div class="section-head"><div><div class="section-kicker">02 / Toolkit</div><h2>Technical skills.</h2></div><p class="section-intro">Technologies and core concepts I have worked with. Add proficiency levels only when you can confidently demonstrate them.</p></div>
+        <div class="skills-grid">
+          <article class="skill-card"><h3>⌘ Programming</h3><div class="tags"><span class="tag">Java</span><span class="tag">Python</span><span class="tag">C</span><span class="tag">C++</span><span class="tag">JavaScript</span></div></article>
+          <article class="skill-card"><h3>◈ Frontend</h3><div class="tags"><span class="tag">HTML5</span><span class="tag">CSS3</span><span class="tag">React.js</span><span class="tag">Responsive UI</span></div></article>
+          <article class="skill-card"><h3>⌁ Backend</h3><div class="tags"><span class="tag">Node.js</span><span class="tag">Express.js</span><span class="tag">REST APIs</span></div></article>
+          <article class="skill-card"><h3>▤ Databases</h3><div class="tags"><span class="tag">MySQL</span><span class="tag">MongoDB</span><span class="tag">Joins</span><span class="tag">Subqueries</span><span class="tag">Normalization</span></div></article>
+          <article class="skill-card"><h3>◎ Computer science</h3><div class="tags"><span class="tag">DBMS</span><span class="tag">OOP</span><span class="tag">Operating Systems</span><span class="tag">Networking</span><span class="tag">DSA</span></div></article>
+          <article class="skill-card"><h3>⚙ Tools & workflow</h3><div class="tags"><span class="tag">Git & GitHub</span><span class="tag">Cisco Packet Tracer</span><span class="tag">VS Code</span></div></article>
+        </div>
+      </section>
+
+      <section id="projects" class="reveal">
+        <div class="section-head"><div><div class="section-kicker">03 / Selected work</div><h2>Projects that solve problems.</h2></div><p class="section-intro">A selection of application ideas and development work. Open each project to add your implementation details and evidence.</p></div>
+        <div class="project-toolbar">
+          <div class="filters">
+            <button class="filter active" data-filter="all">All projects</button><button class="filter" data-filter="web">Web development</button><button class="filter" data-filter="database">Database</button>
+          </div>
+          <span class="terminal-help">Select a project to see more details ↘</span>
+        </div>
+        <div class="project-grid">
+          <article class="project-card" data-category="web database">
+            <div class="project-art"><span class="symbol">OF/</span><small>01 — CAMPUS PLATFORM</small></div>
+            <div class="project-content"><h3>OpenForge</h3><p>A college-focused collaboration and talent-discovery platform concept where students can showcase projects, activities, skills and team contributions.</p><div class="tags"><span class="tag">React</span><span class="tag">Node.js</span><span class="tag">Express</span><span class="tag">MySQL</span></div><div class="project-links"><a href="#" class="details-link" data-project="openforge">Project details ↗</a><a href="https://github.com/cksp003" target="_blank" rel="noopener">GitHub ↗</a></div></div>
+          </article>
+          <article class="project-card" data-category="web database">
+            <div class="project-art"><span class="symbol">NB.</span><small>02 — LOCAL DISCOVERY</small></div>
+            <div class="project-content"><h3>NearByMe</h3><p>A local product-discovery application concept that helps users find nearby shops and check product availability and stock information.</p><div class="tags"><span class="tag">HTML</span><span class="tag">CSS</span><span class="tag">JavaScript</span><span class="tag">MySQL</span></div><div class="project-links"><a href="#" class="details-link" data-project="nearbyme">Project details ↗</a><a href="https://github.com/cksp003" target="_blank" rel="noopener">GitHub ↗</a></div></div>
+          </article>
+          <article class="project-card" data-category="web database">
+            <div class="project-art"><span class="symbol">SOL</span><small>03 — E-COMMERCE</small></div>
+            <div class="project-content"><h3>Solar Marketplace</h3><p>A solar-panel e-commerce application concept covering product browsing, user accounts, cart, checkout and order workflows.</p><div class="tags"><span class="tag">React</span><span class="tag">Node.js</span><span class="tag">Express</span><span class="tag">MySQL</span></div><div class="project-links"><a href="#" class="details-link" data-project="solar">Project details ↗</a><a href="https://github.com/cksp003" target="_blank" rel="noopener">GitHub ↗</a></div></div>
+          </article>
+        </div>
+        <p class="terminal-help" style="margin-top:18px">Recruiter tip: replace each GitHub link with the exact repository, and add screenshots, a live demo, your individual contribution and verified outcomes before publishing.</p>
+      </section>
+
+      <section id="experience" class="reveal">
+        <div class="section-head"><div><div class="section-kicker">04 / Journey</div><h2>Experience & education.</h2></div><p class="section-intro">A concise view of my academic background and industry exposure.</p></div>
+        <div class="timeline">
+          <article class="timeline-card"><div class="date">INTERNSHIP</div><h3>MERN Stack Development Intern</h3><strong>BOBROS Consultancy Service Pvt. Ltd.</strong><p>Gained practical exposure to frontend development and backend API integration while working with the MERN stack. Add the exact features, tools and deliverables you personally completed.</p></article>
+          <article class="timeline-card"><div class="date">B.TECH · FINAL YEAR</div><h3>Information Technology</h3><strong>Gayatri Vidya Parishad College of Engineering</strong><p>Academic foundation in programming, DBMS, operating systems, computer networks, object-oriented programming and data structures.</p></article>
+        </div>
+      </section>
+
+      <section id="terminal" class="reveal">
+        <div class="terminal-wrap">
+          <div><div class="section-kicker">05 / Interactive profile</div><h2>Explore my developer terminal.</h2><p class="section-intro" style="margin-top:14px">A small interactive way to navigate the portfolio. Try <b>help</b>, <b>about</b>, <b>skills</b>, <b>projects</b> or <b>contact</b>.</p></div>
+          <div class="terminal">
+            <div class="terminal-top"><i></i><i></i><i></i><span style="margin-left:8px">paul@portfolio: ~</span></div>
+            <div class="terminal-body" id="terminalOutput"><div class="muted">Welcome. Type <span class="cmd">help</span> to see available commands.</div></div>
+            <form class="terminal-input" id="terminalForm"><input id="terminalCommand" aria-label="Terminal command" placeholder="Type a command..." autocomplete="off"><button type="submit">Run ↵</button></form>
+          </div>
+        </div>
+      </section>
+
+      <section id="achievements" class="reveal">
+        <div class="section-head"><div><div class="section-kicker">06 / Recognition</div><h2>Achievements & learning.</h2></div><p class="section-intro">Credentials and milestones that reflect consistent learning. Add certificate links and dates for verification.</p></div>
+        <div class="achievement-grid">
+          <article class="achievement"><div class="emoji">♧</div><h3>Advanced SQL learning</h3><p>Practice with joins, subqueries, set operations, aggregations and analytical functions.</p></article>
+          <article class="achievement"><div class="emoji">⌘</div><h3>Cisco networking</h3><p>Cisco networking learning and certification experience. Add the exact credential title and verification link.</p></article>
+          <article class="achievement"><div class="emoji">✦</div><h3>LeetCode & problem solving</h3><p>Consistent coding practice. Link your public profile and include verified badges or milestones.</p></article>
+        </div>
+      </section>
+
+      <section id="contact" class="reveal">
+        <div class="section-head"><div><div class="section-kicker">07 / Get in touch</div><h2>Let's connect.</h2></div><p class="section-intro">Interested in software development opportunities, internships, technical discussions or collaborative projects? I'd be glad to connect.</p></div>
+        <div class="contact-grid">
+          <div class="panel"><h3 style="margin-top:0">Contact details</h3><p>Use the links below to reach me. Replace the sample email and LinkedIn address with your current professional contact details.</p>
+            <div class="contact-links">
+              <!-- TODO: Replace with your real email address. -->
+              <a class="contact-link" href="mailto:YOUR_EMAIL@example.com"><span>EMAIL</span>YOUR_EMAIL@example.com ↗</a>
+              <a class="contact-link" href="https://github.com/cksp003" target="_blank" rel="noopener"><span>GITHUB</span>github.com/cksp003 ↗</a>
+              <!-- TODO: Replace with your LinkedIn profile URL. -->
+              <a class="contact-link" href="https://www.linkedin.com/" target="_blank" rel="noopener"><span>LINKEDIN</span>Connect on LinkedIn ↗</a>
             </div>
-        </header>
-
-        <!-- SKILLS SECTION -->
-        <section id="skills">
-            <h3>Technical Arsenal</h3>
-            <div class="glass-card">
-                <div style="margin-bottom: 15px;">
-                    <strong style="color: var(--text-main); display: block; margin-bottom: 10px;">Languages & Core:</strong>
-                    <span class="tag">Python</span>
-                    <span class="tag">Java</span>
-                    <span class="tag">C++</span>
-                    <span class="tag">JavaScript (ES6+)</span>
-                    <span class="tag">Data Structures & Algorithms</span>
-                </div>
-                <div style="margin-bottom: 15px;">
-                    <strong style="color: var(--text-main); display: block; margin-bottom: 10px;">Frameworks & Databases:</strong>
-                    <span class="tag">React.js</span>
-                    <span class="tag">Node.js</span>
-                    <span class="tag">Express.js</span>
-                    <span class="tag">Tailwind CSS</span>
-                    <span class="tag">MySQL</span>
-                </div>
-                <div>
-                    <strong style="color: var(--text-main); display: block; margin-bottom: 10px;">Tools & APIs:</strong>
-                    <span class="tag">Gemini API (GenAI)</span>
-                    <span class="tag">RESTful API Design</span>
-                    <span class="tag">Git & GitHub</span>
-                    <span class="tag">AWS (IoT Core)</span>
-                    <span class="tag">UI/UX (Canva)</span>
-                </div>
-            </div>
-        </section>
-
-        <!-- PROJECTS SECTION -->
-        <section id="projects">
-            <h3>Featured Engineering Work</h3>
-            <div class="grid-3">
-                <!-- Project 1 -->
-                <div class="glass-card">
-                    <div class="project-header">
-                        <h4 class="project-title">Antigravity</h4>
-                        <div class="project-links">
-                            <a href="#" title="GitHub Repo">🔗</a>
-                        </div>
-                    </div>
-                    <p class="project-desc">
-                        A comprehensive web-based placement and student portal designed for institutional workflows at GVPCE, featuring role-specific secure dashboards.
-                    </p>
-                    <ul class="project-bullets">
-                        <li>Architected a robust MySQL backend for secure data state management.</li>
-                        <li>Integrated the Gemini API to power automated resume parsing and dynamic mock interviews.</li>
-                    </ul>
-                    <div style="margin-top: 20px;">
-                        <span class="tag">React</span>
-                        <span class="tag">MySQL</span>
-                        <span class="tag">Gemini API</span>
-                    </div>
-                </div>
-
-                <!-- Project 2 -->
-                <div class="glass-card">
-                    <div class="project-header">
-                        <h4 class="project-title">Near/Me</h4>
-                        <div class="project-links">
-                            <a href="#" title="GitHub Repo">🔗</a>
-                        </div>
-                    </div>
-                    <p class="project-desc">
-                        A full-stack local e-commerce platform built to bridge digital discovery with physical retail by tracking real-time inventory counts.
-                    </p>
-                    <ul class="project-bullets">
-                        <li>Engineered a highly responsive REST API for seamless retail data synchronization.</li>
-                        <li>Designed a clean, component-driven UI utilizing Tailwind for optimal user experience.</li>
-                    </ul>
-                    <div style="margin-top: 20px;">
-                        <span class="tag">React</span>
-                        <span class="tag">Express</span>
-                        <span class="tag">Node.js</span>
-                    </div>
-                </div>
-
-                <!-- Project 3 -->
-                <div class="glass-card">
-                    <div class="project-header">
-                        <h4 class="project-title">XploreWorld</h4>
-                        <div class="project-links">
-                            <a href="#" title="GitHub Repo">🔗</a>
-                        </div>
-                    </div>
-                    <p class="project-desc">
-                        An intelligent Android application featuring an AI-powered trip planner, eco-friendly travel routing, and critical emergency SOS functionality.
-                    </p>
-                    <ul class="project-bullets">
-                        <li>Leveraged Gemini 1.5 Flash to generate dynamic, location-aware travel itineraries.</li>
-                        <li>Integrated complex location services for accurate routing and safety features.</li>
-                    </ul>
-                    <div style="margin-top: 20px;">
-                        <span class="tag">Android</span>
-                        <span class="tag">Gemini 1.5 Flash</span>
-                        <span class="tag">Java</span>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- EXPERIENCE SECTION -->
-        <section id="experience">
-            <h3>Experience & Education</h3>
-            <div class="grid-2">
-                <!-- Education -->
-                <div class="glass-card">
-                    <h4 style="color: var(--accent-cyan); font-size: 1.2rem; margin-bottom: 5px;">Gayatri Vidya Parishad College of Engineering (GVPCE)</h4>
-                    <h5 style="color: var(--text-main); font-size: 1rem; font-weight: 500; margin-bottom: 10px;">Engineering Student</h5>
-                    <p style="color: var(--text-muted); font-size: 0.95rem; margin-bottom: 15px;">
-                        Actively engaged in technical campus placements, competitive programming (LeetCode, HackerRank), and full-stack software development projects.
-                    </p>
-                    <ul class="project-bullets">
-                        <li><strong>Certifications:</strong> Getting Started with AWS IoT</li>
-                    </ul>
-                </div>
-
-                <!-- Leadership -->
-                <div class="glass-card">
-                    <h4 style="color: var(--accent-violet); font-size: 1.2rem; margin-bottom: 5px;">Design Lead</h4>
-                    <h5 style="color: var(--text-main); font-size: 1rem; font-weight: 500; margin-bottom: 10px;">Hearts of Humanity (HoH) Club</h5>
-                    <p style="color: var(--text-muted); font-size: 0.95rem;">
-                        Direct visual identity and digital asset creation for institutional initiatives. Design certificates, engagement campaigns, and event branding to drive community outreach and student participation.
-                    </p>
-                </div>
-            </div>
-        </section>
-
-        <!-- FOOTER -->
-        <footer id="contact">
-            <h2 style="color: var(--text-main); margin-bottom: 15px;">Let's Build Something.</h2>
-            <p style="margin-bottom: 25px;">Currently exploring entry-level software engineering and full-stack development roles.</p>
-            <a href="mailto:your.email@example.com" class="btn btn-primary" style="display: inline-block; margin-bottom: 40px;">Say Hello</a>
-            <p>&copy; 2026 Ch. Krupa Satya Paul. Built with clean code and high ambitions.</p>
-        </footer>
+          </div>
+          <div class="panel"><h3 style="margin-top:0">Send a message</h3><form id="contactForm">
+            <label>Your name<input id="senderName" required placeholder="Enter your name"></label>
+            <label>Your email<input id="senderEmail" type="email" required placeholder="you@example.com"></label>
+            <label>Message<textarea id="senderMessage" required placeholder="Write your message..."></textarea></label>
+            <button class="btn primary" type="submit">Prepare email ↗</button>
+            <small class="terminal-help">This opens your email application; it does not send or store messages on a server.</small>
+          </form></div>
+        </div>
+      </section>
     </div>
+  </main>
+  <footer><div class="footer-inner"><span>© <span id="year"></span> Challa Krupa Satya Paul. Built with purpose.</span><span><a href="#home">Back to top ↑</a> · Designed for clarity, not clutter.</span></div></footer>
+
+  <div class="modal hidden" id="projectModal" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+    <div class="modal-box"><button class="modal-close" id="modalClose" aria-label="Close dialog">✕</button><div class="section-kicker">PROJECT OVERVIEW</div><h2 id="modalTitle" style="font-size:2rem;margin:12px 0"></h2><p id="modalDescription" style="color:var(--muted)"></p><h3>What to showcase</h3><ul id="modalPoints" style="color:var(--muted);padding-left:20px"></ul><p class="terminal-help">Before publishing, make sure the description reflects implemented functionality, not just planned features.</p></div>
+  </div>
+
+  <script>
+    // Mobile navigation
+    const menuBtn = document.getElementById('menuBtn');
+    const navLinks = document.getElementById('navLinks');
+    menuBtn.addEventListener('click', () => navLinks.classList.toggle('open'));
+    navLinks.querySelectorAll('a').forEach(a => a.addEventListener('click', () => navLinks.classList.remove('open')));
+
+    // Theme toggle (saved in this browser)
+    const themeToggle = document.getElementById('themeToggle');
+    if (localStorage.getItem('portfolio-theme') === 'light') document.body.classList.add('light');
+    themeToggle.addEventListener('click', () => {
+      document.body.classList.toggle('light');
+      localStorage.setItem('portfolio-theme', document.body.classList.contains('light') ? 'light' : 'dark');
+    });
+
+    // Reading progress and reveal-on-scroll
+    const progress = document.getElementById('progress');
+    window.addEventListener('scroll', () => {
+      const max = document.documentElement.scrollHeight - window.innerHeight;
+      progress.style.width = (max > 0 ? window.scrollY / max * 100 : 0) + '%';
+    });
+    const observer = new IntersectionObserver(entries => entries.forEach(entry => {
+      if (entry.isIntersecting) { entry.target.classList.add('visible'); observer.unobserve(entry.target); }
+    }), {threshold: .12});
+    document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+    // Project category filters
+    document.querySelectorAll('.filter').forEach(btn => btn.addEventListener('click', () => {
+      document.querySelectorAll('.filter').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      const filter = btn.dataset.filter;
+      document.querySelectorAll('.project-card').forEach(card => {
+        card.classList.toggle('hidden', filter !== 'all' && !card.dataset.category.split(' ').includes(filter));
+      });
+    }));
+
+    // Project detail modal
+    const projectInfo = {
+      openforge: {title:'OpenForge', description:'A college-oriented platform concept designed to make student work, collaboration and achievements easier to discover.', points:['Explain the student profile and activity feed you implemented.','Show project/team workflows and the database schema.','Demonstrate recruiter search or talent discovery only if implemented.','Link the exact source repository and a working demo.']},
+      nearbyme: {title:'NearByMe', description:'A local product discovery concept that connects users with nearby stores and product stock information.', points:['Explain how users, stores, products and inventory are represented in MySQL.','Show the product availability search and stock update flow.','Describe the API endpoints and your individual contribution.','Link the exact source repository and a working demo.']},
+      solar: {title:'Solar Marketplace', description:'A solar product e-commerce concept covering the shopping journey and supporting workflows.', points:['Show product listing, cart and checkout functionality that is complete.','Explain authentication, order management and database design.','Document payment integration only if it is working.','Link the exact source repository and a working demo.']}
+    };
+    const modal = document.getElementById('projectModal');
+    document.querySelectorAll('.details-link').forEach(link => link.addEventListener('click', e => {
+      e.preventDefault();
+      const data = projectInfo[link.dataset.project];
+      document.getElementById('modalTitle').textContent = data.title;
+      document.getElementById('modalDescription').textContent = data.description;
+      const points = document.getElementById('modalPoints'); points.innerHTML = '';
+      data.points.forEach(point => { const li = document.createElement('li'); li.textContent = point; points.appendChild(li); });
+      modal.classList.remove('hidden');
+    }));
+    function closeModal(){modal.classList.add('hidden')}
+    document.getElementById('modalClose').addEventListener('click', closeModal);
+    modal.addEventListener('click', e => {if(e.target === modal) closeModal()});
+    document.addEventListener('keydown', e => {if(e.key === 'Escape') closeModal()});
+
+    // Interactive terminal
+    const terminalOutput = document.getElementById('terminalOutput');
+    const commandInput = document.getElementById('terminalCommand');
+    const commands = {
+      help: 'Commands: help, about, skills, projects, experience, contact, clear',
+      about: 'I am Challa Krupa Satya Paul, a final-year Information Technology student interested in software development, backend systems and SQL.',
+      skills: 'Programming: Java, Python, C, C++, JavaScript | Frontend: HTML, CSS, React | Backend: Node.js, Express, REST APIs | Database: MySQL, MongoDB',
+      projects: 'Featured work: OpenForge (campus collaboration), NearByMe (local inventory discovery), Solar Marketplace (e-commerce concept). Explore the Projects section for details.',
+      experience: 'MERN Stack Development internship at BOBROS Consultancy Service Pvt. Ltd. See the Experience section for context.',
+      contact: 'Use the contact section or email YOUR_EMAIL@example.com after replacing the placeholder with your real address.',
+      clear: ''
+    };
+    document.getElementById('terminalForm').addEventListener('submit', e => {
+      e.preventDefault();
+      const command = commandInput.value.trim().toLowerCase();
+      if (!command) return;
+      if (command === 'clear') terminalOutput.innerHTML = '';
+      else {
+        const line = document.createElement('div'); line.innerHTML = '<span class="cmd">paul@portfolio:~$</span> ' + escapeHTML(command);
+        const response = document.createElement('div'); response.className = 'muted'; response.textContent = commands[command] || 'Command not found. Type "help" to see available commands.';
+        terminalOutput.append(line, response);
+      }
+      commandInput.value = '';
+      terminalOutput.scrollTop = terminalOutput.scrollHeight;
+    });
+    function escapeHTML(value){return value.replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));}
+
+    // Contact form: opens a prefilled email; replace the placeholder address first.
+    document.getElementById('contactForm').addEventListener('submit', e => {
+      e.preventDefault();
+      const recipient = 'YOUR_EMAIL@example.com';
+      if (recipient.includes('YOUR_EMAIL')) { alert('Please replace YOUR_EMAIL@example.com in the HTML with your actual email address first.'); return; }
+      const name = document.getElementById('senderName').value;
+      const email = document.getElementById('senderEmail').value;
+      const message = document.getElementById('senderMessage').value;
+      const subject = encodeURIComponent('Portfolio enquiry from ' + name);
+      const body = encodeURIComponent('Name: ' + name + '\nEmail: ' + email + '\n\n' + message);
+      window.location.href = `mailto:${recipient}?subject=${subject}&body=${body}`;
+    });
+    document.getElementById('year').textContent = new Date().getFullYear();
+  </script>
 </body>
 </html>
